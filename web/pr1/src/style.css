@@ -1,0 +1,91 @@
+body {
+    background-color: #fff;
+  }
+  #circle {
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(red 10px, yellow 30%, #1e90ff 50%);
+    -moz-border-radius: 60px;
+    -webkit-border-radius: 60px;
+    border-radius: 60px;
+      
+}
+  #square {
+    width: 120px;
+    height: 120px;
+    background: #015de7;
+      
+}
+  #oval {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    background: #e9337c;
+    -webkit-border-radius: 100px / 50px;
+    -moz-border-radius: 100px / 50px;
+    border-radius: 100px / 50px;
+      
+}
+#diamond {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(red, yellow, blue, orange);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);      
+}
+.nav{
+    display:  inline-block;
+    width: 300;
+    background: dodgerblue;
+}
+#text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #fff;
+}
+.filters__img {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    margin: 10px;
+  }
+  
+  .filters__img img {
+    width: initial;
+    height: 100%;
+  }
+  
+  .box{
+  display: flex;
+  }
+  .element {
+    width: 100px;
+    height: 100px;
+    animation: changeColor 3s infinite, move 4s infinite alternate;
+  }
+  
+  @keyframes move {
+    0% {
+      margin-left: 0px;
+    }
+    100% {
+      margin-left: 200px;
+    }
+  }
+  
+  @keyframes changeColor {
+    0% {
+      background-color: red;
+    }
+    50% {
+      background-color: yellow;
+    }
+    100% {
+      background-color: blue;
+    }
+  }

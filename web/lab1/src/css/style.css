@@ -1,0 +1,496 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;400;500&display=swap");
+html {
+  color: #000; }
+
+body {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #023047; }
+
+.container {
+  width: 80%;
+  margin: 0 auto; }
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #8ecae6;
+  padding: 20px 0;
+  align-items: center;
+  margin-top: auto;
+  background-color: #ffb703; }
+  footer .container {
+    display: flex;
+    justify-content: space-between; }
+  footer .about {
+    font-weight: bold; }
+  footer .links {
+    display: flex;
+    gap: 10px; }
+  footer img {
+    width: 25px;
+    height: auto;
+    padding: 5px; }
+
+header {
+  border: 1px solid #8ecae6;
+  background-color: #8ecae6; }
+  header .container {
+    display: flex;
+    justify-content: space-between;
+    height: 60px; }
+  header .logo {
+    display: flex;
+    justify-content: space-between; }
+  header .letter {
+    display: flex;
+    height: 50px;
+    width: 40px;
+    align-items: center;
+    text-align: center;
+    background-color: #ffb703;
+    justify-content: center; }
+    header .letter p {
+      color: #023047;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 32px;
+      font-weight: 100; }
+  header .header-name {
+    color: #000;
+    align-self: center;
+    font-size: 16px;
+    margin-left: 30px;
+    font-weight: 400; }
+  header button {
+    background-color: #ffb703;
+    color: #023047;
+    font-size: 16px;
+    padding: 0 15px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    align-self: center;
+    font-weight: 100; }
+
+section .objects {
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 70px; }
+  section .objects .object:nth-of-type(1) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(1) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(2) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(2) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(3) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(3) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(4) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(4) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(5) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(5) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(6) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(6) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(7) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(7) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(8) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(8) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(9) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(9) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(10) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(10) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(11) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(11) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(12) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(12) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(13) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(13) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(14) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(14) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(15) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(15) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(16) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(16) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(17) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(17) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(18) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(18) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(19) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(19) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(20) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(20) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(21) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(21) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(22) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(22) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(23) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(23) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(24) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(24) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(25) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(25) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(26) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(26) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(27) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(27) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(28) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(28) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(29) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(29) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(30) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(30) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(31) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(31) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(32) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(32) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(33) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(33) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(34) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(34) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(35) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(35) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(36) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(36) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(37) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(37) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(38) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(38) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(39) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(39) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(40) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(40) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(41) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(41) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(42) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(42) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(43) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(43) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(44) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(44) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(45) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(45) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(46) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(46) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(47) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(47) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(48) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(48) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(49) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(49) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(50) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(50) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(51) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(51) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(52) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(52) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(53) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(53) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(54) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(54) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(55) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(55) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(56) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(56) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(57) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(57) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(58) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(58) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(59) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(59) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(60) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(60) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(61) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(61) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(62) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(62) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(63) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(63) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(64) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(64) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(65) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(65) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(66) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(66) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(67) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(67) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(68) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(68) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(69) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(69) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(70) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(70) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(71) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(71) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(72) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(72) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(73) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(73) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(74) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(74) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(75) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(75) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(76) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(76) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(77) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(77) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(78) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(78) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(79) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(79) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(80) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(80) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(81) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(81) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(82) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(82) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(83) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(83) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(84) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(84) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(85) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(85) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(86) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(86) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(87) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(87) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(88) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(88) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(89) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(89) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(90) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(90) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(91) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(91) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(92) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(92) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(93) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(93) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(94) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(94) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(95) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(95) > .image:hover {
+      background-color: #faecc8; }
+  section .objects .object:nth-of-type(96) > .image {
+    background-color: #ffb703; }
+    section .objects .object:nth-of-type(96) > .image:hover {
+      background-color: #ffc636; }
+  section .objects .object:nth-of-type(97) > .image {
+    background-color: #fabb1d; }
+    section .objects .object:nth-of-type(97) > .image:hover {
+      background-color: #fbca4f; }
+  section .objects .object:nth-of-type(98) > .image {
+    background-color: #f7c138; }
+    section .objects .object:nth-of-type(98) > .image:hover {
+      background-color: #f9d069; }
+  section .objects .object:nth-of-type(99) > .image {
+    background-color: #fbcf5e; }
+    section .objects .object:nth-of-type(99) > .image:hover {
+      background-color: #fcde90; }
+  section .objects .object:nth-of-type(100) > .image {
+    background-color: #f6dc99; }
+    section .objects .object:nth-of-type(100) > .image:hover {
+      background-color: #faecc8; }
+section h1 {
+  font-size: 2em;
+  margin-block: 0.83em 0.83em; }
+section .object {
+  margin: 0; }
+  section .object .image {
+    position: relative;
+    padding-bottom: 100%; }
+  section .object h3 {
+    font-size: 24px;
+    margin-block: 1em 1em;
+    font-weight: bold; }
+  section .object p {
+    font-size: 12px;
+    margin-block: 1em 1em; }

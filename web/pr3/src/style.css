@@ -1,0 +1,124 @@
+#Inrow {
+  display: flex;
+  /* Add some extra style to make the shapes look nicer */ }
+  #Inrow .square {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+    color: white;
+    text-align: center;
+    line-height: 70px;
+    background: blue; }
+  #Inrow .circle {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #ffffff, #040002); }
+  #Inrow .oval {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+    border-radius: 50%;
+    width: 100px;
+    background: pink; }
+  #Inrow .rhombus {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+    transform: rotate(45deg);
+    transform-origin: 50% 50%;
+    margin-right: 0;
+    animation: rotate 1s linear infinite;
+    background: gray; }
+  #Inrow .figure-click {
+    background: none;
+    background-color: black; }
+  #Inrow .pulse {
+    animation-name: pulse;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite; }
+
+.counter {
+  display: flex;
+  align-items: center; }
+  .counter p {
+    margin-left: 5px; }
+
+.buttons {
+  display: flex; }
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(180deg); } }
+@keyframes pulse {
+  0% {
+    transform: scale(1); }
+  50% {
+    transform: scale(1.1); }
+  100% {
+    transform: scale(1); } }
+.container {
+  position: relative;
+  width: 600px;
+  margin: 0 auto;
+  overflow: hidden; }
+  .container .images {
+    white-space: nowrap;
+    transition: transform 0.5s ease-in-out; }
+  .container .images img {
+    display: inline-block;
+    width: 600px;
+    height: 500px; }
+  .container .back,
+  .container .forward {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    cursor: pointer; }
+  .container .back:disabled,
+  .container .forward:disabled {
+    background-color: #000;
+    cursor: not-allowed; }
+  .container .back {
+    left: 0; }
+  .container .forward {
+    right: 0; }
+  .container .Scounter {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px; }
+
+.modalWindow {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #d36a6a; }
+  .modalWindow .modalWindow-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #2fbb85;
+    width: 60%;
+    position: relative; }
+  .modalWindow .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer; }

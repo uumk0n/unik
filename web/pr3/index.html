@@ -1,0 +1,52 @@
+<html>
+<head>
+    
+ <title>Page</title>
+ <link rel="stylesheet" href="src/style.css">
+ 
+</head>
+<body>
+    <div class="counter">
+        Shape counter:
+        <p id="counter">0</p>
+    </div>
+   
+    <div id="InRow">
+        <div class="square" onclick="FigureClick(this)"></div>
+        <div class="circle" onclick="FigureClick(this)"></div>
+        <div class="oval" onclick="FigureClick(this)"></div>
+        <div class="rhombus" onclick="FigureClick(this)"></div>
+    </div>
+
+    <div class="buttons">
+        <button onclick="create('square')">square</button>
+      <button onclick="create('circle')" >circle</button>
+      <button onclick="create('oval')" >oval</button>
+      <button onclick="create('rhombus')" >romb</button>
+      <button onclick="clear_All()" class="remove">clear all</button>
+    </div>
+       
+    <button onclick="showmodalWindow()">Modal Window</button>
+    <div id="modalWindow" class="modalWindow">
+      <div class="modalWindow-content">
+        <span class="close">&times;</span>
+        <h2>cool text</h2>
+        <p>touch grass</p>
+      </div>
+    </div>
+    <div class="container">
+        <div class="images">
+          <img src="https://i.pinimg.com/originals/78/76/0b/78760b3423fcbb2b3e3bbf06f980a12e.png" />
+          <img src="https://coffeethemusical.files.wordpress.com/2011/01/coffee-logo.jpg" />
+          <img src="https://cdn3.f-cdn.com/contestentries/307074/16466120/565392dbe06dd_thumb900.jpg" />
+          <img src="https://i.pinimg.com/originals/6d/82/1c/6d821cf87d55401a4d217c8a0e393c35.jpg"/>
+        </div>
+        <button class="back">&#8249;</button>
+        <button class="forward">&#8250;</button>
+        <div class="Scounter"></div>
+      </div>
+      <script src="src/js/script.js"></script>
+      <script src="src/js/modalWindow.js"></script>
+      <script src="src/js/sliderBox.js"></script>
+</body>
+</html>

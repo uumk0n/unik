@@ -1,0 +1,9 @@
+.container {
+    width: 1000px;
+    margin: 0 auto;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+  }

@@ -1,0 +1,83 @@
+$figure-square: rgb(0, 23, 128);
+$figure-circle: rgba(111, 255, 0, 0.695);
+$figure-oval: rgb(234, 0, 255);
+$figure-rhombus: linear-gradient(to bottom, #ff993377, #88717c);
+
+@mixin shape-styles {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+@function darken-color($color, $amount) {
+  @return darken($color, $amount);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@mixin square-styles {
+  @include shape-styles;
+  color: white;
+  text-align: center;
+  line-height: 100px;
+  animation: rotate 1s linear infinite;
+  background: $figure-square;
+}
+
+@mixin circle-styles {
+  @include shape-styles;
+  border-radius: 50%;
+  background: $figure-circle;
+}
+
+@mixin oval-styles {
+  @include shape-styles;
+  border-radius: 50%;
+  width: 150px;
+  background: $figure-oval;
+}
+
+@mixin rhombus-styles {
+  @include shape-styles;
+  transform: rotate(45deg);
+  transform-origin: 50% 50%;
+  margin-right: 0;
+  background: $figure-rhombus;
+}
+
+.shapes-row {
+  display: flex;
+
+  .square {
+    @include square-styles;
+  }
+
+  .circle {
+    @include circle-styles;
+  }
+
+  .oval {
+    @include oval-styles;
+  }
+
+  .rhombus {
+    @include rhombus-styles;
+  }
+}
+
+.picture-container {
+  display: flex;
+
+  img {
+    border: 2px solid black;
+    width: 150px;
+    height: 150px;
+  }
+}

@@ -1,0 +1,44 @@
+@keyframes rotate {
+  from {
+    transform: rotate(360deg); }
+  to {
+    transform: rotate(180deg); } }
+.shapes-row {
+  display: flex; }
+  .shapes-row .square {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    animation: rotate 1s linear infinite;
+    background: #001780; }
+  .shapes-row .circle {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background: rgba(111, 255, 0, 0.695); }
+  .shapes-row .oval {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    border-radius: 50%;
+    width: 150px;
+    background: #ea00ff; }
+  .shapes-row .rhombus {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    transform: rotate(45deg);
+    transform-origin: 50% 50%;
+    margin-right: 0;
+    background: linear-gradient(to bottom, #ff993377, #88717c); }
+
+.picture-container {
+  display: flex; }
+  .picture-container img {
+    border: 2px solid black;
+    width: 150px;
+    height: 150px; }

@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;400;500&display=swap");
+
+$main-color: #023047;
+$accent-color: #ffb703;
+$header-color: #8ecae6;
+$text-color: #000;
+
+$object-colors: #ffb703, #fabb1d, #f7c138, #fbcf5e, #f6dc99;
+
+@mixin Fbetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin border {
+  border: 1px solid $header-color;
+}
+
+@mixin download {
+  background-color: $accent-color;
+  color: $main-color;
+}
+
+@mixin objectС($color) {
+  background-color: $color;
+
+  &:hover {
+    background-color: lighten($color, 10%);
+  }
+}
+
+html {
+  color: $text-color;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $main-color;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+footer {
+  @include Fbetween;
+  @include border;
+
+  padding: 20px 0;
+  align-items: center;
+  margin-top: auto;
+  background-color: #ffb703;
+  .container {
+    @include Fbetween;
+  }
+
+  .about {
+    font-weight: bold;
+  }
+
+  .links {
+    display: flex;
+    gap: 10px;
+  }
+
+  img {
+    width: 25px;
+    height: auto;
+    padding: 5px;
+  }
+}
+
+header {
+  @include border;
+  background-color: $header-color;
+
+  .container {
+    @include Fbetween;
+    height: 60px;
+  }
+
+  .logo {
+    @include Fbetween;
+  }
+
+  .letter {
+    display: flex;
+    height: 50px;
+    width: 40px;
+    align-items: center;
+    text-align: center;
+    background-color: $accent-color;
+    justify-content: center;
+
+    p {
+      color: $main-color;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 32px;
+      font-weight: 100;
+    }
+  }
+
+  .header-name {
+    color: $text-color;
+    align-self: center;
+    font-size: 16px;
+    margin-left: 30px;
+    font-weight: 400;
+  }
+
+  button {
+    @include download;
+    font-size: 16px;
+    padding: 0 15px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    align-self: center;
+    font-weight: 100;
+  }
+}
+
+section {
+  .objects {
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 70px;
+
+    @for $i from 1 through 100 {
+      .object:nth-of-type(#{$i}) > .image {
+        @include objectС(nth($object-colors, 1 + (($i - 1) % 5)));
+      }
+    }
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-block: 0.83em 0.83em;
+  }
+
+  .object {
+    margin: 0;
+
+    .image {
+      position: relative;
+      padding-bottom: 100%;
+    }
+
+    h3 {
+      font-size: 24px;
+      margin-block: 1em 1em;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 12px;
+      margin-block: 1em 1em;
+    }
+  }
+}
