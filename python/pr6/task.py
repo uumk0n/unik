@@ -1,91 +1,87 @@
+import random
 import numpy as np
 import matplotlib.pyplot as plt
-num_samples = 100
-legs = np.random.uniform(1.0, 4.0, num_samples)
-heights = np.random.uniform(1.0, 2.5, num_samples)
 
-
-
-plt.scatter(legs, heights)
-plt.show()
-
-
-def perceptron(x, y, learning_rate, num_iterations):
-    weights = np.zeros((x.shape[1], 1))
-    bias = 0
-    for i in range(num_iterations):
-        # calculate the predicted output
-        y_pred = np.dot(x, weights) + bias
-        
-        # calculate the error
-        error = y - y_pred
-        
-        # update the weights and bias
-        weights += learning_rate * np.dot(x.T, error)
-        bias += learning_rate * np.sum(error)
-    return weights, bias
-
-
-x = np.column_stack((legs, np.ones(num_samples)))
-y = heights.reshape(num_samples, 1)
-learning_rate = 0.001
-num_iterations = 1000
-weights, bias = perceptron(x, y, learning_rate, num_iterations)
-
-plt.scatter(legs, heights)
-plt.plot(legs, np.dot(x, weights) + bias, color='red')
-plt.show()
-
-
-y_pred = np.dot(x, weights) + bias
-mse = np.mean((y - y_pred)**2)
-rmse = np.sqrt(mse)
-print(f"Root-mean-square error: {rmse}")
-
-
-learning_rate = 0.001
-num_iterations = 10000
-errors = []
-for i in range(num_iterations):
-    # calculate the predicted output
-    y_pred = np.dot(x, weights) + bias
-    
-    # calculate the error
-    error = y - y_pred
-    errors.append(np.mean(error**2))
-    
-    # update the weights and bias
-    weights += learning_rate * np.dot(x.T, error)
-    bias += learning_rate * np.sum(error)
-    
-    if i % 100 == 0:
-        print(f"Iteration: {i}, Error: {errors[-1]}")
-
-plt.plot(range(num_iterations), errors)
-plt.xlabel("Iterations")
-plt.ylabel("Error")
-plt.show()
-
-learning_rates = [0.0001, 0.001, 0.01, 0.1]
-num_iterations = 10000
-plt.figure(figsize=(10, 6))
-
-for learning_rate in learning_rates:
+# Определение функции перцептрона
+def perceptron(x, y, learning_rate, num_iterations,changeble:bool=False):
+    # Масштабирование входных данных
+    x = (x - np.mean(x, axis=0)) / np.std(x, axis=0)
+    # Добавление смещения к входным данным
+    x = np.hstack([x, np.ones((x.shape[0], 1))])
     weights = np.zeros((x.shape[1], 1))
     bias = 0
     errors = []
     for i in range(num_iterations):
-        # calculate the predicted output
+        # Рассчитать прогнозируемые значения
         y_pred = np.dot(x, weights) + bias
-
-        # calculate the error
+        # Рассчитываем ошибку
         error = y - y_pred
-        errors.append(np.mean(error**2))
-
-        # update the weights and bias
+        # Обновляем весовые коэффициенты и смещение
         weights += learning_rate * np.dot(x.T, error)
         bias += learning_rate * np.sum(error)
+        # Рассчитываем среднюю квадратичную ошибку
+        mse = np.mean(error ** 2)
+        errors.append(mse)
+        # Понижение скорости обучения с течением времени
+        if changeble and i % 100 == 0:
+            learning_rate *= 0.99
+    # Рассчитываем окончательные прогнозные значения
+    y_pred = np.dot(x, weights) + bias
+    # Рассчитываем среднеквадратичную ошибку
+    rms_error = np.sqrt(np.mean((y - y_pred) ** 2))
+    return weights, bias, errors, rms_error
 
-    plt.plot(range(num_iterations), errors, label=f"Learning rate: {learning_rate}")
 
-plt.xlabel
+mu = 100
+sigma = 5
+base = np.random.normal(mu, sigma)
+leg = base / 3.8 + np.random.normal(0, 1)
+heigh = base * 1.7 + np.random.normal(0, 2)
+input_data = np.array([[leg, 1], [leg, heigh]])
+# Создаём данные и добавляем их во входной массив
+for i in range(15):
+    base = np.random.normal(mu, sigma)
+    leg = base / 3.8 + np.random.normal(0, 1)
+    heigh = base * 1.7 + np.random.normal(0, 2)
+    
+    new_data = np.array([[leg, 1], [leg, heigh]])
+    input_data = np.vstack((input_data, new_data))
+
+
+# Используя pyplot.scatter, визуализируем и проверяем адекватность исходных данных
+plt.scatter(input_data[:, 0], input_data[:, 1], marker='o', color='blue')
+plt.xlabel('Нога')
+plt.ylabel('Рост')
+plt.title('Входные данные')
+plt.show()
+
+
+# Используя перцептрон, изучаем взаимосвязь между ростом и длиной ноги
+x = input_data[:, :-1]
+y = input_data[:, -1].reshape(-1, 1)
+
+# Обучение перцептрона с изменением скорости обучения
+weights, bias, errors, rms_error = perceptron(x, y, 0.0001, 10000, True)
+
+x = np.hstack([x, np.ones((x.shape[0], 1))])
+
+# Рисуем диаграмму рассеяния и прямую линию
+plt.scatter(x[:, 0], y, marker='o', color='blue')
+plt.plot(x[:, 0], np.dot(x, weights) + bias, color='red')
+plt.xlabel('Нога')
+plt.ylabel('Рост')
+plt.title('Результаты работы перцептрона')
+plt.show()
+
+# Вычисляем среднеквадратичную ошибку для перцептрона
+y_pred = np.dot(x, weights) + bias
+rms_error = np.sqrt(np.mean((y - y_pred) ** 2))
+print('RMS error:', rms_error)
+
+
+# Строим график изменения ошибки со временем
+plt.plot(range(len(errors)), errors)
+plt.xlabel('Итерации')
+plt.ylabel('Средняя квадратичная ошибка')
+plt.title('ошибки с изменением времени')
+plt.show()
