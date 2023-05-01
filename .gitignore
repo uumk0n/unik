@@ -296,3 +296,9 @@ TSWLatexianTemp*
 
 # xwatermark package
 *.xwm
+
+node_modules
+dist
+.parcel-cache
+.cache
+web/pr7live/

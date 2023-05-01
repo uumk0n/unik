@@ -20,9 +20,11 @@ y[y == 0] = -1
 
 # Определение класса Perceptron с сигмоидной активацией и методами fit и predict.
 class Perceptron:
-    def __init__(self, eta=0.01, n_iter=50):
+    def __init__(self, eta=0.01, n_iter=50, random_state=None, alpha=0.1):
         self.eta = eta
         self.n_iter = n_iter
+        self.random_state = random_state
+        self.alpha = alpha
         
     def sigmoid(self, z):
         return 1 / (1 + np.exp(-z))
@@ -35,6 +37,9 @@ class Perceptron:
 
     
     def fit(self, X, y):
+        if self.random_state:
+            np.random.seed(self.random_state)
+            
         self.w_ = np.zeros(1 + X.shape[1])
         self.errors_ = []
         
@@ -43,13 +48,14 @@ class Perceptron:
             
             for xi, yi in zip(X, y):
                 update = self.eta * (yi - self.predict(xi))
-                self.w_[1:] += update * xi
+                self.w_[1:] += update * xi - self.alpha * self.w_[1:]
                 self.w_[0] += update
                 errors += int(update != 0.0)
             
             self.errors_.append(errors)
         
         return self
+
 
 # Разделение данных на тренировочный и тестовый наборы (соотношение 40/10). Обучение персептрона с двумя функциями.
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=1)
@@ -89,4 +95,12 @@ plt.xlabel('sepal длина [см]')
 plt.ylabel('petal длина [см]')
 plt.legend(loc='upper left')
 plt.title('Перцептрон - 2 параметра')
+plt.show()
+
+perceptron = Perceptron(eta=0.1, n_iter=100,random_state=1,alpha=0.1)
+perceptron.fit(X, y)
+
+plt.plot(range(1, len(perceptron.errors_) + 1), perceptron.errors_, marker='o')
+plt.xlabel('Эпохи')
+plt.ylabel('Количество обновлений')
 plt.show()
