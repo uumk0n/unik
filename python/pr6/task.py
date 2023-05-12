@@ -2,86 +2,78 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Определение функции перцептрона
-def perceptron(x, y, learning_rate, num_iterations,changeble:bool=False):
-    # Масштабирование входных данных
-    x = (x - np.mean(x, axis=0)) / np.std(x, axis=0)
-    # Добавление смещения к входным данным
-    x = np.hstack([x, np.ones((x.shape[0], 1))])
-    weights = np.zeros((x.shape[1], 1))
-    bias = 0
-    errors = []
-    for i in range(num_iterations):
-        # Рассчитать прогнозируемые значения
-        y_pred = np.dot(x, weights) + bias
-        # Рассчитываем ошибку
-        error = y - y_pred
-        # Обновляем весовые коэффициенты и смещение
-        weights += learning_rate * np.dot(x.T, error)
-        bias += learning_rate * np.sum(error)
-        # Рассчитываем среднюю квадратичную ошибку
-        mse = np.mean(error ** 2)
-        errors.append(mse)
-        # Понижение скорости обучения с течением времени
-        if changeble and i % 100 == 0:
-            learning_rate *= 0.99
-    # Рассчитываем окончательные прогнозные значения
-    y_pred = np.dot(x, weights) + bias
-    # Рассчитываем среднеквадратичную ошибку
-    rms_error = np.sqrt(np.mean((y - y_pred) ** 2))
-    return weights, bias, errors, rms_error
-
-
-mu = 100
-sigma = 5
-base = np.random.normal(mu, sigma)
-leg = base / 3.8 + np.random.normal(0, 1)
-heigh = base * 1.7 + np.random.normal(0, 2)
-input_data = np.array([[leg, 1], [leg, heigh]])
-# Создаём данные и добавляем их во входной массив
+# Generate random leg and height dimensions
+data = []
 for i in range(15):
-    base = np.random.normal(mu, sigma)
-    leg = base / 3.8 + np.random.normal(0, 1)
-    heigh = base * 1.7 + np.random.normal(0, 2)
-    
-    new_data = np.array([[leg, 1], [leg, heigh]])
-    input_data = np.vstack((input_data, new_data))
+    base = random.gauss(100, 5)
+    leg = base / 3.8 + random.gauss(0, 1)
+    height = base * 1.7 + random.gauss(0, 2)
+    data.append([leg, height])
 
 
-# Используя pyplot.scatter, визуализируем и проверяем адекватность исходных данных
-plt.scatter(input_data[:, 0], input_data[:, 1], marker='o', color='blue')
-plt.xlabel('Нога')
+data = np.array(data)
+# Visualize the input data using scatter plot
+plt.scatter(data[:,0], data[:,1])
+plt.xlabel('Размер ноги')
 plt.ylabel('Рост')
 plt.title('Входные данные')
 plt.show()
 
+def proceed(x,k,c):
+    return x * k+ c
 
-# Используя перцептрон, изучаем взаимосвязь между ростом и длиной ноги
-x = input_data[:, :-1]
-y = input_data[:, -1].reshape(-1, 1)
+def perceptron(input_data, rate, num_step, mod:bool=False):
+    targets = data[:,1]
+    k = random.uniform(-5, 5)
+    c = random.uniform(-5, 5)
+    error_history=[]
+    for i in range(num_step):
+        x = random.choice(input_data)
+        true_result = targets[np.where((input_data == x).all(axis=1))[0][0]]
+        out = proceed(x,k,c)
+        delta = true_result - out
+        k += delta * rate * x[0]
+        c += delta * rate * x[1]
+        if i % 100 == 0:
+            error = np.mean((targets - proceed(input_data[:,0],k[0],c[0])) ** 2)
+            error_history.append(error)
+            if mod:
+                rate*=0.99
+   
+    return k, c, error_history
 
-# Обучение перцептрона с изменением скорости обучения
-weights, bias, errors, rms_error = perceptron(x, y, 0.0001, 10000, True)
+# Visualize the output data with the learned linear model
+k, c, errors = perceptron(data,0.001,100000)
 
-x = np.hstack([x, np.ones((x.shape[0], 1))])
-
-# Рисуем диаграмму рассеяния и прямую линию
-plt.scatter(x[:, 0], y, marker='o', color='blue')
-plt.plot(x[:, 0], np.dot(x, weights) + bias, color='red')
-plt.xlabel('Нога')
+x_vals = data[:,0]
+y_vals = k[0] * x_vals + c[0]
+plt.scatter(data[:,0], data[:,1])
+plt.plot(x_vals, y_vals, c='r')
+plt.xlabel('Размер ноги')
 plt.ylabel('Рост')
-plt.title('Результаты работы перцептрона')
+plt.title('Результат работы перцептрона')
 plt.show()
 
-# Вычисляем среднеквадратичную ошибку для перцептрона
-y_pred = np.dot(x, weights) + bias
-rms_error = np.sqrt(np.mean((y - y_pred) ** 2))
-print('RMS error:', rms_error)
-
-
-# Строим график изменения ошибки со временем
 plt.plot(range(len(errors)), errors)
-plt.xlabel('Итерации')
-plt.ylabel('Средняя квадратичная ошибка')
-plt.title('ошибки с изменением времени')
+plt.xlabel('Шаг обучения (100 шагов на точку)')
+plt.ylabel('RMS ошибка')
+plt.title('Изменение ошибки при обучении перцептрона')
+plt.show()
+
+# с изменением времени
+k, c, errors = perceptron(data,0.001,100000,True)
+
+x_vals = data[:,0]
+y_vals = k[0] * x_vals + c[0]
+plt.scatter(data[:,0], data[:,1])
+plt.plot(x_vals, y_vals, c='r')
+plt.xlabel('Размер ноги')
+plt.ylabel('Рост')
+plt.title('Результат работы перцептрона с изменением времени')
+plt.show()
+
+plt.plot(range(len(errors)), errors)
+plt.xlabel('Шаг обучения (100 шагов на точку)')
+plt.ylabel('RMS ошибка')
+plt.title('Изменение ошибки при обучении перцептрона с изменением времени')
 plt.show()
