@@ -43,7 +43,7 @@ def perceptron(input_data, rate, num_step, mod:bool=False):
     return k, c, error_history
 
 # Visualize the output data with the learned linear model
-k, c, errors = perceptron(data,0.001,100000)
+k, c, errors = perceptron(data,0.001,10000)
 
 x_vals = data[:,0]
 y_vals = k[0] * x_vals + c[0]
@@ -61,7 +61,7 @@ plt.title('Изменение ошибки при обучении перцеп�
 plt.show()
 
 # с изменением времени
-k, c, errors = perceptron(data,0.001,100000,True)
+k, c, errors = perceptron(data,0.001,10000,True)
 
 x_vals = data[:,0]
 y_vals = k[0] * x_vals + c[0]
