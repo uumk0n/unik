@@ -302,4 +302,4 @@ dist
 .parcel-cache
 .cache
 web/pr7live/
-python
+python/
