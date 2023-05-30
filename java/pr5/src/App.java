@@ -51,7 +51,7 @@ public class App {
             }
             case 2: {
                 ArrayList<String> list = new ArrayList<String>();
-                FileReader fr = new FileReader("/home/uumkon/Рабочий стол/university/4sem/java/pr5/bin/test.txt");
+                FileReader fr = new FileReader("file.txt");
                 Zapis zp;
                 BufferedReader reader = new BufferedReader(fr);
                 String line = reader.readLine();
