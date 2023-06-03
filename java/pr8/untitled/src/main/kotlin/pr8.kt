@@ -8,7 +8,7 @@ import java.io.FileReader
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom
 
-object App {
+object pr8 {
     @Throws(Exception::class)
     @JvmStatic
     fun main(args: Array<String>) {
@@ -57,16 +57,16 @@ object App {
 
             2 -> {
 
-                val json = File("file.json").readText()
-               // val records = Json.decodeFromString<List<Zapis>>(json)
-               // val zapBook = ZapisBook(records.toMutableList())
+                val json = File("C:/Users/uumk0/OneDrive/Desktop/PR8/untitled/file.json").readText()
+                val records = Json.decodeFromString<List<Zapis>>(json)
+                val zapBook = ZapisBook(records.toMutableList().size)
 
-               // println("Список всех записей:")
-               // for (i in zapBook._mass.indices) {
-               //     zapBook._mass[i].print()
-             //   }
+                println("Список всех записей:")
+                for (i in zapBook._mass.indices) {
+                    zapBook._mass[i].print()
+                }
 
-               // zapBook.FindwSameDate()
+                zapBook.FindwSameDate()
             }
 
             3 -> {
