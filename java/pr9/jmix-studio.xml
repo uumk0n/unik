@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JmixDataStoreSettingsManager">
+    <moduleSettings>
+      <entry key="com.company.pr9.main">
+        <ModuleSettings>
+          <option name="dataStoreOptions">
+            <map>
+              <entry key="main">
+                <value>
+                  <DataStoreSettings />
+                </value>
+              </entry>
+            </map>
+          </option>
+        </ModuleSettings>
+      </entry>
+    </moduleSettings>
+  </component>
+  <component name="VersionUpdateSettings">
+    <option name="ignoredVersions">
+      <set>
+        <option value="1.2.3" />
+      </set>
+    </option>
+  </component>
+</project>

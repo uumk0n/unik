@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://jmix.io/schema/ui/menu">
+
+    <menu id="application" caption="msg://com.company.lab7/menu.application" insertBefore="administration">
+        <item screen="User.browse" caption="msg://com.company.lab7.screen.user/UserBrowse.caption"/>
+        <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
+        <item screen="Participant.browse" caption="msg://com.company.lab7.screen.participant/participantBrowse.menu"/>
+        <item screen="Discipline.browse" caption="msg://com.company.lab7.screen.discipline/disciplineBrowse.menu"/>
+        <item screen="Contest.browse" caption="msg://com.company.lab7.screen.contest/contestBrowse.menu"/>
+    </menu>
+
+</menu-config>
