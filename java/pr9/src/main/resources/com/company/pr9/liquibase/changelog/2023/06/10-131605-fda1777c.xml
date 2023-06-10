@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="tr">
+        <createTable tableName="BUS_ROUTE_LINK">
+            <column name="BUS_ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_BUS_ROUTE_LINK"/>
+            </column>
+            <column name="ROUTE_ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_BUS_ROUTE_LINK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="tr">
+        <createTable tableName="TR_BUS">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TR_BUS"/>
+            </column>
+            <column name="MODEL" type="VARCHAR(255)"/>
+            <column name="REGISTRATION_NUMBER" type="VARCHAR(255)"/>
+            <column name="SEAT_COUNT" type="INT"/>
+            <column name="START_DATE" type="DATETIME"/>
+            <column name="STATION_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="tr">
+        <createTable tableName="TR_ROUTE">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TR_ROUTE"/>
+            </column>
+            <column name="DEPARTURE" type="VARCHAR(255)"/>
+            <column name="DESTINATION" type="VARCHAR(255)"/>
+            <column name="STATION_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="tr">
+        <createTable tableName="TR_STATION">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TR_STATION"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="5" author="tr">
+        <addForeignKeyConstraint baseColumnNames="BUS_ID" baseTableName="BUS_ROUTE_LINK"
+                                 constraintName="FK_BUSROU_ON_BUS" referencedColumnNames="ID"
+                                 referencedTableName="TR_BUS"/>
+    </changeSet>
+    <changeSet id="6" author="tr">
+        <addForeignKeyConstraint baseColumnNames="ROUTE_ID" baseTableName="BUS_ROUTE_LINK"
+                                 constraintName="FK_BUSROU_ON_ROUTE" referencedColumnNames="ID"
+                                 referencedTableName="TR_ROUTE"/>
+    </changeSet>
+    <changeSet id="7" author="tr">
+        <addForeignKeyConstraint baseColumnNames="STATION_ID" baseTableName="TR_BUS"
+                                 constraintName="FK_TR_BUS_ON_STATION" referencedColumnNames="ID"
+                                 referencedTableName="TR_STATION"/>
+    </changeSet>
+    <changeSet id="8" author="tr">
+        <addForeignKeyConstraint baseColumnNames="STATION_ID" baseTableName="TR_ROUTE"
+                                 constraintName="FK_TR_ROUTE_ON_STATION" referencedColumnNames="ID"
+                                 referencedTableName="TR_STATION"/>
+    </changeSet>
+</databaseChangeLog>

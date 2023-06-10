@@ -4,11 +4,11 @@
     <moduleSettings>
       <entry key="com.company.pr9.main">
         <ModuleSettings>
-          <option name="dataStoreOptions">
+          <option name="dataStoreOptionsV2">
             <map>
               <entry key="main">
                 <value>
-                  <DataStoreSettings />
+                  <DataStoreSettingsV2 />
                 </value>
               </entry>
             </map>
@@ -16,12 +16,5 @@
         </ModuleSettings>
       </entry>
     </moduleSettings>
-  </component>
-  <component name="VersionUpdateSettings">
-    <option name="ignoredVersions">
-      <set>
-        <option value="1.2.3" />
-      </set>
-    </option>
   </component>
 </project>

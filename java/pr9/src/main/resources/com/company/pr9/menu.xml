@@ -2,11 +2,11 @@
 <menu-config xmlns="http://jmix.io/schema/ui/menu">
 
     <menu id="application" caption="msg://com.company.pr9/menu.application" insertBefore="administration">
-        <item screen="User.browse" caption="msg://com.company.pr9.screen.user/UserBrowse.caption"/>
+        <item screen="tr_User.browse" caption="msg://com.company.pr9.screen.user/UserBrowse.caption"/>
         <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
-        <item screen="Participant.browse" caption="msg://com.company.pr9.screen.participant/participantBrowse.menu"/>
-        <item screen="Discipline.browse" caption="msg://com.company.pr9.screen.discipline/disciplineBrowse.menu"/>
-        <item screen="bus.browse" caption="msg://com.company.pr9.screen.bus/busBrowse.menu"/>
+        <item screen="tr_Route.browse" caption="msg://com.company.pr9.screen.route/routeBrowse.menu"/>
+        <item screen="tr_Station.browse" caption="msg://com.company.pr9.screen.station/stationBrowse.menu"/>
+        <item screen="tr_Bus.browse" caption="msg://com.company.pr9.screen.bus/busBrowse.menu"/>
     </menu>
 
 </menu-config>

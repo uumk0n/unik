@@ -7,9 +7,9 @@
 
     <!-- DO NOT REMOVE. This changelog is required for user management. -->
 
-    <changeSet id="1" author="Lab7">
+    <changeSet id="1" author="pr9" context="!cuba">
 
-        <createTable tableName="USER_">
+        <createTable tableName="TR_USER">
             <column name="ID" type="${uuid.type}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -29,16 +29,16 @@
 
     </changeSet>
 
-    <changeSet id="2" author="Lab7">
-        <createIndex indexName="IDX_USER__ON_USERNAME"
-                     tableName="USER_" unique="true">
+    <changeSet id="2" author="pr9" context="!cuba">
+        <createIndex indexName="IDX_TR_USER_ON_USERNAME"
+                     tableName="TR_USER" unique="true">
             <column name="USERNAME"/>
         </createIndex>
     </changeSet>
 
-    <changeSet id="3" author="Lab7">
+    <changeSet id="3" author="pr9" context="!cuba">
 
-        <insert tableName="USER_" dbms="postgresql, mssql, hsqldb">
+        <insert tableName="TR_USER" dbms="postgresql, mssql, hsqldb">
             <column name="ID" value="60885987-1b61-4247-94c7-dff348347f93"/>
             <column name="VERSION" value="1"/>
             <column name="USERNAME" value="admin"/>
@@ -46,7 +46,7 @@
             <column name="ACTIVE" valueBoolean="true"/>
         </insert>
 
-        <insert tableName="USER_" dbms="oracle, mysql, mariadb">
+        <insert tableName="TR_USER" dbms="oracle, mysql, mariadb">
             <column name="ID" value="608859871b61424794c7dff348347f93"/>
             <column name="VERSION" value="1"/>
             <column name="USERNAME" value="admin"/>
@@ -56,7 +56,7 @@
 
     </changeSet>
 
-    <changeSet id="4" author="Lab7">
+    <changeSet id="4" author="pr9" context="!cuba">
 
         <insert tableName="SEC_ROLE_ASSIGNMENT" dbms="postgresql, mssql, hsqldb">
             <column name="ID" value="6c9e420a-2b7a-4c42-8654-a9027ee14083"/>
