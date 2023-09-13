@@ -41,9 +41,9 @@ func printResults(methodName string, A [][]float64, b, x []float64) {
 	norm1 := calculateNorm1(residual)
 	normInf := calculateNormInf(residual)
 	norm2 := calculateNorm2(residual)
-	fmt.Printf("Норма ||r||1 = %.2f\n", norm1)
-	fmt.Printf("Норма ||r||∞ = %.2f\n", normInf)
-	fmt.Printf("Норма ||r||2 = %.2f\n", norm2)
+	fmt.Printf("Норма ||r||1 = %.15f\n", norm1)
+	fmt.Printf("Норма ||r||∞ = %.15f\n", normInf)
+	fmt.Printf("Норма ||r||2 = %.15f\n", norm2)
 
 	deltaB := []float64{0.1, -0.2, 0.3} // Пример погрешности Δb
 	bWithError := make([]float64, len(b))
