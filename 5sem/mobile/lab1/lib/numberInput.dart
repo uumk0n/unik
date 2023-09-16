@@ -6,12 +6,13 @@ class NumberInputWidget extends StatefulWidget {
   const NumberInputWidget({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _NumberInputWidgetState createState() => _NumberInputWidgetState();
 }
 
 class _NumberInputWidgetState extends State<NumberInputWidget> {
-  TextEditingController _textFieldController1 = TextEditingController();
-  TextEditingController _textFieldController2 = TextEditingController();
+  final TextEditingController _textFieldController1 = TextEditingController();
+  final TextEditingController _textFieldController2 = TextEditingController();
   String result = '';
 
   @override
@@ -21,15 +22,13 @@ class _NumberInputWidgetState extends State<NumberInputWidget> {
     super.dispose();
   }
 
-  bool _validateInput(String input) {
-    final RegExp regex = RegExp(r'^[\d,]+$');
-    return regex.hasMatch(input);
-  }
-
   void _calculateSum() {
     String number1 = _textFieldController1.text;
     String number2 = _textFieldController2.text;
 
+    if (number1.isEmpty || number2.isEmpty) {
+      return;
+    }
     // Используем NumberFormat для правильной обработки десятичных чисел
     NumberFormat format = NumberFormat.decimalPattern('en_US');
     double num1 = format.parse(number1.replaceAll(',', '.')).toDouble();
@@ -49,10 +48,10 @@ class _NumberInputWidgetState extends State<NumberInputWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-            constraints: BoxConstraints(maxWidth: 100.0),
+            constraints: const BoxConstraints(maxWidth: 100.0),
             child: TextField(
               controller: _textFieldController1,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Введите число 1',
               ),
               keyboardType: TextInputType.number,
@@ -62,10 +61,10 @@ class _NumberInputWidgetState extends State<NumberInputWidget> {
             ),
           ),
           Container(
-            constraints: BoxConstraints(maxWidth: 100.0),
+            constraints: const BoxConstraints(maxWidth: 100.0),
             child: TextField(
               controller: _textFieldController2,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Введите число 2',
               ),
               keyboardType: TextInputType.number,
@@ -78,11 +77,11 @@ class _NumberInputWidgetState extends State<NumberInputWidget> {
             onPressed: () {
               _calculateSum();
             },
-            child: Text('Вычислить'),
+            child: const Text('Вычислить'),
           ),
           Text(
             result,
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
           ),
         ],
       ),
