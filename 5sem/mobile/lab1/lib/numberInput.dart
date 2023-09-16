@@ -41,48 +41,92 @@ class _NumberInputWidgetState extends State<NumberInputWidget> {
     });
   }
 
+  void _calculateDifference() {
+    String number1 = _textFieldController1.text;
+    String number2 = _textFieldController2.text;
+
+    if (number1.isEmpty || number2.isEmpty) {
+      return;
+    }
+
+    NumberFormat format = NumberFormat.decimalPattern('en_US');
+
+    double num1 = format.parse(number1.replaceAll(',', '.')).toDouble();
+    double num2 = format.parse(number2.replaceAll(',', '.')).toDouble();
+
+    double difference = num1 - num2;
+
+    setState(() {
+      result = 'Разность: ${format.format(difference)}';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Container(
-            constraints: const BoxConstraints(maxWidth: 100.0),
-            child: TextField(
-              controller: _textFieldController1,
-              decoration: const InputDecoration(
-                labelText: 'Введите число 1',
-              ),
-              keyboardType: TextInputType.number,
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.allow(RegExp(r'^[\d,]+$')),
-              ],
-            ),
-          ),
-          Container(
-            constraints: const BoxConstraints(maxWidth: 100.0),
-            child: TextField(
-              controller: _textFieldController2,
-              decoration: const InputDecoration(
-                labelText: 'Введите число 2',
-              ),
-              keyboardType: TextInputType.number,
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.allow(RegExp(r'^[\d,]+$')),
-              ],
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              _calculateSum();
-            },
-            child: const Text('Вычислить'),
-          ),
+          inputNum1(),
+          inputNum2(),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [sumBtn(), diffBtn()]),
           Text(
             result,
             style: const TextStyle(fontSize: 20),
           ),
+        ],
+      ),
+    );
+  }
+
+  ElevatedButton sumBtn() {
+    return ElevatedButton(
+      onPressed: () {
+        _calculateSum();
+      },
+      child: const Text('Вычислить сумму'),
+    );
+  }
+
+  ElevatedButton diffBtn() {
+    return ElevatedButton(
+      onPressed: () {
+        _calculateDifference();
+      },
+      child: const Text('Вычислить разность'),
+    );
+  }
+
+  Container inputNum2() {
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 100.0),
+      child: TextField(
+        controller: _textFieldController2,
+        decoration: const InputDecoration(
+          labelText: 'Введите число 2',
+        ),
+        keyboardType: TextInputType.number,
+        inputFormatters: <TextInputFormatter>[
+          FilteringTextInputFormatter.allow(RegExp(r'^[\d,]+$')),
+        ],
+      ),
+    );
+  }
+
+  Container inputNum1() {
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 100.0),
+      child: TextField(
+        controller: _textFieldController1,
+        decoration: const InputDecoration(
+          labelText: 'Введите число 1',
+        ),
+        keyboardType: TextInputType.number,
+        inputFormatters: <TextInputFormatter>[
+          FilteringTextInputFormatter.allow(RegExp(r'^[\d,]+$')),
         ],
       ),
     );
