@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
 class NumberInputWidget extends StatefulWidget {
@@ -27,9 +28,10 @@ class _NumberInputWidgetState extends State<NumberInputWidget> {
     String number2 = _textFieldController2.text;
 
     if (number1.isEmpty || number2.isEmpty) {
+      showToast("Ошибка: Поля не могут быть пустыми");
       return;
     }
-    // Используем NumberFormat для правильной обработки десятичных чисел
+
     NumberFormat format = NumberFormat.decimalPattern('en_US');
     double num1 = format.parse(number1.replaceAll(',', '.')).toDouble();
     double num2 = format.parse(number2.replaceAll(',', '.')).toDouble();
@@ -37,7 +39,7 @@ class _NumberInputWidgetState extends State<NumberInputWidget> {
     double sum = num1 + num2;
 
     setState(() {
-      result = 'Сумма: ${format.format(sum)}'; // Форматируем результат
+      result = 'Сумма: ${format.format(sum)}';
     });
   }
 
@@ -46,6 +48,7 @@ class _NumberInputWidgetState extends State<NumberInputWidget> {
     String number2 = _textFieldController2.text;
 
     if (number1.isEmpty || number2.isEmpty) {
+      showToast("Ошибка: Поля не могут быть пустыми");
       return;
     }
 
@@ -59,6 +62,18 @@ class _NumberInputWidgetState extends State<NumberInputWidget> {
     setState(() {
       result = 'Разность: ${format.format(difference)}';
     });
+  }
+
+  void showToast(String message) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
   }
 
   @override

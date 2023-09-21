@@ -1,8 +1,8 @@
 using System.IO;
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using Tmds.DBus.Protocol;
 
 namespace lab1;
 
@@ -18,18 +18,18 @@ public partial class MainWindow : Window
         AvaloniaXamlLoader.Load(this);
     }
 
-    private void ViewButton_Click(object sender, RoutedEventArgs e)
+    private async Task ViewButton_ClickAsync(object sender, RoutedEventArgs e)
     {
-        if (File.Exists("accounting_for_leased_premises.json"))
-        {
-            var viewForm = new ViewForm();
-            viewForm.Show();
-        }
-        else
+        if (!File.Exists("accounting_for_leased_premises.json"))
         {
             var msgBox = new MessageBox();
             msgBox.Show();
+
+            await msgBox.WaitForCloseAsync();
         }
+
+        var viewForm = new ViewForm();
+        viewForm.Show();
     }
 
     private void EditButton_Click(object sender, RoutedEventArgs e)
