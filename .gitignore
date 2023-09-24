@@ -3,6 +3,10 @@ obj
 .vs
 .idea
 
+*.csproj
+*.manifest
+.vscode/
+
 node_modules
 dist
 .parcel-cache
