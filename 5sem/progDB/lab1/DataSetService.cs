@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using Newtonsoft.Json;
@@ -73,5 +74,34 @@ class DataSetService
 
         string jsonFilePath = "accounting_for_leased_premises.json";
         File.WriteAllText(jsonFilePath, json);
+
     }
+
+    public DataTable convertToDataTable<T>(List<T> tableFromJSon)
+    {
+        if(tableFromJSon==null)
+        {
+            return null;
+        }
+
+        DataTable table = new DataTable();
+        foreach (var item in tableFromJSon)
+        {
+            DataRow row = table.NewRow();
+            foreach (var prop in item.GetType().GetProperties())
+            {
+                row[prop.Name] = prop.GetValue(item);
+            }
+            table.Rows.Add(row);
+        }
+        return table;
+    }
+}
+
+public class DataModel
+{
+    public List<Building> Buildings { get; set; }
+    public List<Room> Rooms { get; set; }
+    public List<Renter> Renters { get; set; }
+    public List<Rent> Rents { get; set; }
 }

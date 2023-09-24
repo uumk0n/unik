@@ -18,19 +18,24 @@ public partial class MainWindow : Window
         AvaloniaXamlLoader.Load(this);
     }
 
-    private async Task ViewButton_ClickAsync(object sender, RoutedEventArgs e)
+    private async void ViewButton_ClickAsync(object sender, RoutedEventArgs e)
     {
         if (!File.Exists("accounting_for_leased_premises.json"))
         {
-            var msgBox = new MessageBox();
+            var msgBox = new NoDataBase();
             msgBox.Show();
 
             await msgBox.WaitForCloseAsync();
         }
 
         var viewForm = new ViewForm();
-        viewForm.Show();
+        var tabControl = this.FindControl<TabControl>("TabControl");
+        var tabItem = new TabItem();
+        tabItem.Header = "Просмотр";
+        tabItem.Content = viewForm; 
+        tabControl.Items.Add(tabItem);
     }
+
 
     private void EditButton_Click(object sender, RoutedEventArgs e)
     {

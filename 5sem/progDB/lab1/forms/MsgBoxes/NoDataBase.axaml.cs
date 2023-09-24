@@ -7,11 +7,11 @@ using Avalonia.Threading;
 
 namespace lab1;
 
-public partial class MessageBox : Window
+public partial class NoDataBase : Window
 {
     private DispatcherTimer timer;
     private TaskCompletionSource<bool> closeCompletionSource;
-    public MessageBox()
+    public NoDataBase()
     {
         InitializeComponent();
 
