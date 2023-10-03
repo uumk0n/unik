@@ -32,12 +32,10 @@ func printResults(methodName string, A [][]float64, b, x []float64) {
 	fmt.Println("\nРешение системы:")
 	printVectorWithPrecision(x)
 
-	// Вычислить вектор невязки
 	residual := calculateResidual(A, x, b)
 	fmt.Println("\nВектор невязки:")
 	printVectorWithPrecision(residual)
 
-	// Вычислить нормы вектора невязки
 	norm1 := calculateNorm1(residual)
 	normInf := calculateNormInf(residual)
 	norm2 := calculateNorm2(residual)
@@ -54,7 +52,7 @@ func printResults(methodName string, A [][]float64, b, x []float64) {
 	printMatrixWithPrecision(inversiveMatrix)
 	fmt.Println("\nПроверка обратной матрицы A:", check)
 
-	deltaB := []float64{0.1, -0.2, 0.3} // Пример погрешности Δb
+	deltaB := []float64{0.1, -0.2, 0.3} // Пример погрешности
 	bWithError := make([]float64, len(b))
 	for i := range b {
 		bWithError[i] = b[i] + deltaB[i]

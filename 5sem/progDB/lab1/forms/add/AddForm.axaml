@@ -7,4 +7,66 @@
         Title="Добавление" Width="800" Height="600"
         Background="Turquoise">
     
+        <TabControl Name="tabControl">
+                <TabItem>
+                        <TabItem.Header>
+                                <TextBlock Text="Здания"/>
+                        </TabItem.Header>
+                        <StackPanel>
+                                <DataGrid Name="buildingDataGrid" Margin="20" 
+                                        AutoGenerateColumns="True" IsReadOnly="False" 
+                                        GridLinesVisibility="All"
+                                        BorderThickness="1" BorderBrush="Gray"
+                                        Height="200">
+                                </DataGrid>
+                                <Button Content="Добавить" Click="AddButton_Click" Name="addBuildingButton"/>
+                        </StackPanel>
+                </TabItem>
+
+                <TabItem>
+                        <TabItem.Header>
+                                <TextBlock Text="Комнаты"/>
+                        </TabItem.Header>
+                        <StackPanel>
+                                <DataGrid Name="roomDataGrid" Margin="20" 
+                                        AutoGenerateColumns="True" IsReadOnly="False" 
+                                        GridLinesVisibility="All"
+                                        BorderThickness="1" BorderBrush="Gray"
+                                        Height="200">
+                                </DataGrid>
+                                <Button Content="Добавить" Click="AddButton_Click" Name="addRoomButton"/>
+                        </StackPanel>
+                </TabItem>
+
+                <TabItem>
+                        <TabItem.Header>
+                                <TextBlock Text="Арендатор"/>
+                        </TabItem.Header>
+                        <StackPanel>
+                                <DataGrid Name="renterDataGrid" Margin="20" 
+                                        AutoGenerateColumns="True" IsReadOnly="False" 
+                                        GridLinesVisibility="All"
+                                        BorderThickness="1" BorderBrush="Gray"
+                                        Height="200">
+                                </DataGrid>
+                                <Button Content="Добавить" Click="AddButton_Click" Name="addRenterButton"/>
+                        </StackPanel>
+                </TabItem>
+
+                <TabItem>
+                        <TabItem.Header>
+                                <TextBlock Text="Аренда"/>
+                        </TabItem.Header>
+                        <StackPanel>
+                                <DataGrid Name="rentDataGrid" Margin="20" 
+                                        AutoGenerateColumns="True" IsReadOnly="False" 
+                                        GridLinesVisibility="All"
+                                        BorderThickness="1" BorderBrush="Gray"
+                                        Height="200">
+                                </DataGrid>
+                                <Button Content="Добавить" Click="AddButton_Click" Name="addRentButton"/>
+                        </StackPanel>
+                </TabItem>
+        </TabControl>
+
 </Window>

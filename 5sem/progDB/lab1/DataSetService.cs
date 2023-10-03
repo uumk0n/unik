@@ -2,22 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using Newtonsoft.Json;
 
 namespace lab1;
 
 class DataSetService
 {
+    public DataSet dataSet;
+    public DataRelation relationBuildingAndRoom;
+    public DataRelation relationRenterAndRoom;
     public DataSetService()
     {
-        // init 
+        CreateDataSet();
     }
-    public void CreateDataSet()
+    private void CreateDataSet()
     {
-        if (File.Exists("accounting_for_leased_premises.json"))
-            return;
-
-        DataSet dataSet = new DataSet("accounting_for_leased_premises");
+        dataSet = new DataSet("accounting_for_leased_premises");
 
         DataTable buildingTable = new DataTable("Building");
         buildingTable.Columns.Add("BuildingID", typeof(int)).AutoIncrement = true;
@@ -55,53 +57,97 @@ class DataSetService
         dataSet.Tables.Add(renterTable);
         dataSet.Tables.Add(rentTable);
 
-        DataRelation relationBuildingAndRoom = new DataRelation(
+        SetRelationShips(buildingTable, roomTable, renterTable);
+        dataSet.Relations.Add(relationBuildingAndRoom);
+        dataSet.Relations.Add(relationRenterAndRoom);
+    }
+
+    public void SetRelationShips(DataTable buildingTable, DataTable roomTable, DataTable renterTable)
+    {
+        relationBuildingAndRoom = new DataRelation(
         "BuildingRoomRelation",
         buildingTable.Columns["BuildingID"],
         roomTable.Columns["BuildingID"]
         );
 
-        DataRelation relationRenterAndRoom = new DataRelation(
+        relationRenterAndRoom = new DataRelation(
         "RenterRoomRelation",
         renterTable.Columns["RenterID"],
         roomTable.Columns["RoomID"]
         );
+    }
 
-        dataSet.Relations.Add(relationBuildingAndRoom);
-        dataSet.Relations.Add(relationRenterAndRoom);
+    public void SaveDataSet()
+    {
+        if (File.Exists("accounting_for_leased_premises.json"))
+            return;
 
         string json = JsonConvert.SerializeObject(dataSet, Formatting.Indented);
 
         string jsonFilePath = "accounting_for_leased_premises.json";
         File.WriteAllText(jsonFilePath, json);
-
     }
 
-    public DataTable convertToDataTable<T>(List<T> tableFromJSon)
+    public List<T> DataTableToList<T>(DataTable dataTable) where T : new()
     {
-        if(tableFromJSon==null)
+        List<T> list = new List<T>();
+
+        foreach (DataRow row in dataTable.Rows)
         {
-            return null;
+            T obj = new T();
+
+            foreach (DataColumn column in dataTable.Columns)
+            {
+                string propertyName = column.ColumnName;
+                object value = row[column];
+
+
+                var property = typeof(T).GetProperty(propertyName);
+                if (value == DBNull.Value)
+                {
+                    property.SetValue(obj, null);
+                    continue;
+                }
+
+                if (property != null)
+                {
+                    if (property.PropertyType == typeof(int))
+                        property.SetValue(obj, Convert.ToInt32(value));
+                    else if (property.PropertyType == typeof(DateTime))
+                        property.SetValue(obj, Convert.ToDateTime(value));
+                    else
+                        property.SetValue(obj, value);
+                }
+            }
+
+            list.Add(obj);
         }
 
-        DataTable table = new DataTable();
-        foreach (var item in tableFromJSon)
+        return list;
+    }
+    public DataTable ConvertListToDataTable<T>(List<T> list)
+    {
+        DataTable table = new DataTable(typeof(T).Name);
+
+        PropertyInfo[] properties = typeof(T).GetProperties();
+
+        // Создаем колонки в DataTable на основе свойств типа T
+        foreach (PropertyInfo property in properties)
+        {
+            table.Columns.Add(property.Name, Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType);
+        }
+
+        // Заполняем DataTable данными из List<T>
+        foreach (T item in list)
         {
             DataRow row = table.NewRow();
-            foreach (var prop in item.GetType().GetProperties())
+            foreach (PropertyInfo property in properties)
             {
-                row[prop.Name] = prop.GetValue(item);
+                row[property.Name] = property.GetValue(item) ?? DBNull.Value;
             }
             table.Rows.Add(row);
         }
+
         return table;
     }
-}
-
-public class DataModel
-{
-    public List<Building> Buildings { get; set; }
-    public List<Room> Rooms { get; set; }
-    public List<Renter> Renters { get; set; }
-    public List<Rent> Rents { get; set; }
 }

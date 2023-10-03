@@ -1,5 +1,6 @@
 using System.IO;
 using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
@@ -22,20 +23,15 @@ public partial class MainWindow : Window
     {
         if (!File.Exists("accounting_for_leased_premises.json"))
         {
-            var msgBox = new NoDataBase();
+            var msgBox = new MsgBox();
             msgBox.Show();
 
             await msgBox.WaitForCloseAsync();
         }
 
         var viewForm = new ViewForm();
-        var tabControl = this.FindControl<TabControl>("TabControl");
-        var tabItem = new TabItem();
-        tabItem.Header = "Просмотр";
-        tabItem.Content = viewForm; 
-        tabControl.Items.Add(tabItem);
+        viewForm.Show();
     }
-
 
     private void EditButton_Click(object sender, RoutedEventArgs e)
     {

@@ -15,9 +15,29 @@ func runCode() {
 
 	printResults("a) Метод Гаусса (схема единственного деления)", A, b, x)
 
+	A = [][]float64{
+		{4.35, 4.39, 3.67},
+		{4.04, 3.65, 3.17},
+		{3.14, 2.69, 2.17},
+	}
+	b = []float64{
+		40.15,
+		36.82,
+		28.10}
+
 	xGaussWithPivot := solveLinearSystemWithPivot(A, b)
 
 	printResults("b) Метод Гаусса с выбором главного элемента", A, b, xGaussWithPivot)
+
+	A = [][]float64{
+		{4.35, 4.39, 3.67},
+		{4.04, 3.65, 3.17},
+		{3.14, 2.69, 2.17},
+	}
+	b = []float64{
+		40.15,
+		36.82,
+		28.10}
 
 	L, U := luDecomposition(A)
 	y := solveLowerTriangular(L, b)

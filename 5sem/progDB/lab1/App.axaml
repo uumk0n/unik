@@ -9,5 +9,6 @@
         <Style Selector="Button">
             <Setter Property="Foreground" Value="Black" />
         </Style>
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/> 
     </Application.Styles>
 </Application>

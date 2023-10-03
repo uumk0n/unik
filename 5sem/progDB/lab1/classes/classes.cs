@@ -2,6 +2,8 @@
 using System;
 using System.Data;
 
+namespace lab1;
+
 public class Building
 {
     public int BuildingID { get; set; }

@@ -11,5 +11,9 @@
         <Button Content="Редактирование" Click="EditButton_Click"/>
         <Button Content="Добавление" Click="AddButton_Click"/>
         <Button Content="Удаление" Click="DeleteButton_Click"/>
+
+        <TabControl Name="MainTabControl">
+        <!-- Здесь вы можете добавить вкладки для открытых окон -->
+        </TabControl>
     </StackPanel>
 </Window>
