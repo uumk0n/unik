@@ -57,7 +57,7 @@ public partial class EditForm : Window
         }
         catch (Exception e)
         {
-            MsgBox msgBox = new MsgBox(e.Message, false);
+            MsgBox msgBox = new MsgBox("Ошибка", e.Message, false);
             msgBox.Show();
         }
 

@@ -23,7 +23,7 @@ public partial class MainWindow : Window
     {
         if (!File.Exists("accounting_for_leased_premises.json"))
         {
-            var msgBox = new MsgBox();
+            var msgBox = new MsgBox("Вопрос");
             msgBox.Show();
 
             await msgBox.WaitForCloseAsync();
@@ -49,5 +49,10 @@ public partial class MainWindow : Window
     {
         var deleteForm = new DeleteForm();
         deleteForm.Show();
+    }
+    private void CreateDocsButton_Click(object sender, RoutedEventArgs e)
+    {
+        var createDocs = new CreateDocs();
+        createDocs.Show();
     }
 }

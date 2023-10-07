@@ -13,10 +13,11 @@ public partial class MsgBox : Window
     private TaskCompletionSource<bool> closeCompletionSource;
     private string m_msgText = "";
     private bool m_isVisibleBtns = true;
-    public MsgBox(string text = "Базы данных нет на компьютере. Создать?", bool isVisibleBtns = true)
+    public MsgBox(string title, string text = "Базы данных нет на компьютере. Создать?", bool isVisibleBtns = true)
     {
         m_msgText = text;
         m_isVisibleBtns = isVisibleBtns;
+        this.Title = title;
         InitializeComponent();
 
         timer = new DispatcherTimer();
