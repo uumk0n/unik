@@ -5,7 +5,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="lab1.MainWindow"
         Title="lab1" Width="800" Height="600"
-        Background="Turquoise">
+        Background="Orange">
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Button Content="Просмотр" Click="ViewButton_ClickAsync"/>
         <Button Content="Редактирование" Click="EditButton_Click"/>
