@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lab3/Question.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:translator/translator.dart';
 
 class GeoQuizApp extends StatelessWidget {
   @override
@@ -23,24 +26,69 @@ class QuizScreen extends StatefulWidget {
   _QuizScreenState createState() => _QuizScreenState();
 }
 
+Future<List<Question>> fetchQuestions() async {
+  final response =
+      await http.get(Uri.parse('https://quotable.io/quotes?page=1'));
+
+  if (response.statusCode == 200) {
+    final jsonResponse = json.decode(response.body);
+    final results = jsonResponse['results'] as List;
+
+    final questions = <Question>[];
+
+    for (var result in results) {
+      final content = result['content'];
+      final translatedContent = await translateToRussian(content);
+      questions.add(Question(translatedContent));
+    }
+
+    return questions;
+  } else {
+    throw Exception('Failed to load questions');
+  }
+}
+
+Future<String> translateToRussian(String textToTranslate) async {
+  final translator = GoogleTranslator();
+
+  final translation = await translator.translate(
+    textToTranslate,
+    from: 'en',
+    to: 'ru',
+  );
+
+  return translation.text;
+}
+
 class _QuizScreenState extends State<QuizScreen> {
   Map<int, bool> _userAnswers = {};
-  List<Question> questions = [
-    Question('Столица Франции - Париж?', true),
-    Question('Китай находится в Европе?', false),
-    Question('Австралия - это остров?', true),
-  ];
+  List<Question> questions = [];
 
   int currentQuestionIndex = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    initQuestions();
+  }
+
+  void initQuestions() {
+    fetchQuestions().then((fetchedQuestions) {
+      setState(() {
+        questions = fetchedQuestions;
+      });
+    }).catchError((error) {
+      // Обработка ошибки
+    });
+  }
+
   void checkAnswer(bool userAnswer) {
-    bool correctAnswer = questions[currentQuestionIndex].answer;
     String message;
 
-    if (userAnswer == correctAnswer) {
-      message = 'Правильно!';
+    if (userAnswer) {
+      message = 'Вы ответили "Правда"';
     } else {
-      message = 'Неправильно!';
+      message = 'Вы ответили "Неправда"';
     }
 
     // Вывод Toast сообщения
@@ -54,7 +102,7 @@ class _QuizScreenState extends State<QuizScreen> {
       fontSize: 16.0,
     );
 
-    _userAnswers[currentQuestionIndex] = userAnswer == correctAnswer;
+    _userAnswers[currentQuestionIndex] = userAnswer;
 
     if (currentQuestionIndex < questions.length - 1) {
       setState(() {
@@ -70,8 +118,8 @@ class _QuizScreenState extends State<QuizScreen> {
         builder: (context) {
           return AlertDialog(
             title: Text("Статистика"),
-            content: Text("Правильных ответов: $correctAnswersCount\n"
-                "Ваша успеваемость: ${score.toStringAsFixed(2)}%"),
+            content: Text("Вы согласились: $correctAnswersCount раз\n"
+                "Это ${score.toStringAsFixed(2)}%  от всех вопросов"),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
@@ -150,12 +198,22 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   Text questionText() {
-    return Text(
-      questions[currentQuestionIndex].text,
-      style: TextStyle(
-        fontSize: 24.0,
-        fontWeight: FontWeight.bold,
-      ),
-    );
+    if (questions.isEmpty) {
+      return Text(
+        'Загрузка вопросов...', // Можно использовать любой текст ожидания
+        style: TextStyle(
+          fontSize: 24.0,
+          fontWeight: FontWeight.bold,
+        ),
+      );
+    } else {
+      return Text(
+        questions[currentQuestionIndex].text,
+        style: TextStyle(
+          fontSize: 24.0,
+          fontWeight: FontWeight.bold,
+        ),
+      );
+    }
   }
 }

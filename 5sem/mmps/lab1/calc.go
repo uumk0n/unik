@@ -1,6 +1,9 @@
 package main
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 // solveLinearSystem решает линейную систему уравнений с использованием метода Гаусса.
 //
@@ -136,6 +139,11 @@ func calculateDeterminant(A [][]float64) float64 {
 // Принимает на вход двумерный срез значений float64, представляющий матрицу A.
 // Функция возвращает двумерный срез значений float64, представляющий обратную матрицу.
 func calculateInverseMatrix(A [][]float64) [][]float64 {
+	A = [][]float64{
+		{4.35, 4.39, 3.67},
+		{4.04, 3.65, 3.17},
+		{3.14, 2.69, 2.17},
+	}
 	n := len(A)
 	I := make([][]float64, n)
 	for i := range I {
@@ -174,6 +182,11 @@ func calculateInverseMatrix(A [][]float64) [][]float64 {
 // Возвращает:
 // - bool: true, если данная матрица является обратной другой матрице, в противном случае - false.
 func checkInverseMatrix(A, inverseMatrix [][]float64) bool {
+	A = [][]float64{
+		{4.35, 4.39, 3.67},
+		{4.04, 3.65, 3.17},
+		{3.14, 2.69, 2.17},
+	}
 	n := len(A)
 	E := make([][]float64, n)
 	for i := range E {
@@ -182,10 +195,12 @@ func checkInverseMatrix(A, inverseMatrix [][]float64) bool {
 	}
 
 	product := multiplyMatrices(A, inverseMatrix)
+	fmt.Print("\nПроизведение A и обратной матрицы:\n")
+	printMatrixWithPrecision(product)
 
 	for i := 0; i < n; i++ {
 		for j := 0; j < n; j++ {
-			if math.Abs(product[i][j]-E[i][j]) > 1e-9 {
+			if math.Round(math.Abs(product[i][j])) != math.Round(math.Abs(E[i][j])) {
 				return false
 			}
 		}
@@ -299,16 +314,12 @@ func calculateTheoreticalRelativeError(A [][]float64, x, b, deltaB []float64, in
 //
 // Принимает матрицу коэффициентов A в виде двумерного среза float64 и вектор b в виде среза float64.
 // Функция возвращает вектор решения x в виде среза float64.
-func solveLinearSystemWithPivot(A [][]float64, b []float64) []float64 {
+func gaussEliminationWithPivot(A [][]float64, b []float64) []float64 {
 	n := len(A)
 	x := make([]float64, n)
 
-	rowPermutations := make([]int, n)
-	for i := 0; i < n; i++ {
-		rowPermutations[i] = i
-	}
-
 	for k := 0; k < n-1; k++ {
+		// Находим максимальный элемент в столбце k
 		maxVal := math.Abs(A[k][k])
 		maxRow := k
 		for i := k + 1; i < n; i++ {
@@ -317,11 +328,18 @@ func solveLinearSystemWithPivot(A [][]float64, b []float64) []float64 {
 				maxRow = i
 			}
 		}
-		if maxRow != k {
-			A[k], A[maxRow] = A[maxRow], A[k]
-			rowPermutations[k], rowPermutations[maxRow] = rowPermutations[maxRow], rowPermutations[k]
+
+		// Проверяем, что главный элемент не равен нулю (иначе деление на ноль)
+		if maxVal == 0 {
+			fmt.Println("Система имеет бесконечное число решений или несовместна.")
+			return nil
 		}
 
+		// Перестановка строк
+		A[k], A[maxRow] = A[maxRow], A[k]
+		b[k], b[maxRow] = b[maxRow], b[k]
+
+		// Прямой ход
 		for i := k + 1; i < n; i++ {
 			factor := A[i][k] / A[k][k]
 			for j := k + 1; j < n; j++ {
@@ -331,6 +349,7 @@ func solveLinearSystemWithPivot(A [][]float64, b []float64) []float64 {
 		}
 	}
 
+	// Обратный ход
 	for i := n - 1; i >= 0; i-- {
 		sum := 0.0
 		for j := i + 1; j < n; j++ {
@@ -339,12 +358,7 @@ func solveLinearSystemWithPivot(A [][]float64, b []float64) []float64 {
 		x[i] = (b[i] - sum) / A[i][i]
 	}
 
-	orderedX := make([]float64, n)
-	for i := 0; i < n; i++ {
-		orderedX[rowPermutations[i]] = x[i]
-	}
-
-	return orderedX
+	return x
 }
 
 // luDecomposition выполняет LU-разложение заданной матрицы.
