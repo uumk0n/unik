@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 
 class IrisApp extends StatefulWidget {
   @override
@@ -7,9 +10,10 @@ class IrisApp extends StatefulWidget {
 }
 
 class _IrisAppState extends State<IrisApp> {
-  String selectedMetric = 'Эвклидова';
+  String selectedMetric = 'Евклидова';
   int k = 3;
   bool useWeightedVoting = false;
+  TextEditingController weightsController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +55,23 @@ class _IrisAppState extends State<IrisApp> {
                       selectedMetric = newValue.toString();
                     });
                   },
-                  items: ['Эвклидова', 'Хемминга', 'Чебышева', 'Косинусная']
+                  items: ['Евклидова', 'Хемминга', 'Чебышева', 'Косинусная']
                       .map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
                     );
                   }).toList(),
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                child: TextField(
+                  controller: weightsController, // Привязываем контроллер
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                      labelText:
+                          'Введите веса для признаков через запятую (например, 1,2,1,1):'),
                 ),
               ),
               Container(
@@ -70,7 +84,7 @@ class _IrisAppState extends State<IrisApp> {
                       useWeightedVoting = newValue;
                     });
                   },
-                  title: Text('Использовать взвешенное голосование'),
+                  title: Text('Нормализировать данные'),
                 ),
               ),
               Container(
@@ -79,7 +93,8 @@ class _IrisAppState extends State<IrisApp> {
                 child: ElevatedButton(
                   onPressed: () {
                     // Вызов функции для выполнения классификации с параметрами k, selectedMetric и useWeightedVoting
-                    classifyIris(k, selectedMetric, useWeightedVoting);
+                    classifyIris(k, selectedMetric, useWeightedVoting,
+                        weightsController.text, context);
                   },
                   child: Text('Классифицировать'),
                 ),
@@ -91,9 +106,65 @@ class _IrisAppState extends State<IrisApp> {
     );
   }
 
-  // Метод для выполнения классификации на основе параметров k, метрики и весов
-  void classifyIris(int k, String metric, bool useWeightedVoting) {
-    // Здесь вы можете вставить логику вызова Python-скрипта с параметрами k, metric и useWeightedVoting
-    // и обработать результат классификации.
+  void classifyIris(int k, String metric, bool useWeightedVoting,
+      String weightsInput, BuildContext context) {
+    // Обработка весов из входных данных
+    List<double> weights = weightsInput
+        .split(',')
+        .map((weight) => double.tryParse(weight) ?? 1.0)
+        .toList();
+
+    saveParameters(k, metric, useWeightedVoting, weights);
+    runPythonScript(context);
   }
+
+  @override
+  void dispose() {
+    weightsController.dispose(); // Очистка контроллера при завершении
+    super.dispose();
+  }
+}
+
+void saveParameters(
+    int k, String metric, bool useWeightedVoting, List<double> weights) {
+  final parameters = {
+    'k': k,
+    'metric': metric,
+    'useWeightedVoting': useWeightedVoting,
+    'weights': weights,
+  };
+
+  final jsonString = jsonEncode(parameters);
+
+  final file = File('parameters.json');
+  file.writeAsStringSync(jsonString);
+}
+
+void runPythonScript(BuildContext context) async {
+  final pythonScriptPath = 'python_script.py';
+
+  final process = await Process.start('python', [pythonScriptPath]);
+
+  String pythonOutput = ''; // Создайте переменную для хранения вывода
+
+  process.stdout.transform(utf8.decoder).listen((data) {
+    print('stdout: $data');
+    pythonOutput += data; // Сохраните вывод в переменной
+  });
+
+  process.stderr.transform(utf8.decoder).listen((data) {
+    print('stderr: $data');
+  });
+
+  final exitCode = await process.exitCode;
+  print('Питоновский скрипт завершился с кодом: $exitCode');
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Dialog(
+        child: Text(pythonOutput), // Выводите данные в модальном окне
+      );
+    },
+  );
 }
