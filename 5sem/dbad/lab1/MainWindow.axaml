@@ -1,0 +1,95 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="lab1.MainWindow"
+        Title="lab1" Width="800" Height="600"
+        Background="Orange">
+
+    <TabControl Name="tabControl">
+                <TabItem>
+                        <TabItem.Header>
+                                <TextBlock Text="Здания"/>
+                        </TabItem.Header>
+                        <StackPanel>
+                                <DataGrid Name="buildingDataGrid" Margin="20" 
+                                        AutoGenerateColumns="True" IsReadOnly="True" 
+                                        GridLinesVisibility="All"
+                                        BorderThickness="1" BorderBrush="Gray"
+                                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                </DataGrid>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Button Content="Редактирование" Click="EditButton_Click" Name="BuildingEditButton"/>
+                                    <Button Content="Добавление" Click="AddButton_Click" Name="BuildingAddButton"/>
+                                    <Button Content="Удаление" Click="DeleteButton_Click" Name="BuildingDeleteButton"/>
+
+                                    <Button Content="Сформировать отчёт" Click="CreateDocsButton_Click"/>
+                                </StackPanel>
+                        </StackPanel>
+                </TabItem>
+
+                <TabItem>
+                        <TabItem.Header>
+                                <TextBlock Text="Комнаты"/>
+                        </TabItem.Header>
+                        <StackPanel>
+                                <DataGrid Name="roomDataGrid" Margin="20" 
+                                        AutoGenerateColumns="True" IsReadOnly="True" 
+                                        GridLinesVisibility="All"
+                                        BorderThickness="1" BorderBrush="Gray"
+                                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                </DataGrid>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Button Content="Редактирование" Click="EditButton_Click" Name="RoomEditButton"/>
+                                    <Button Content="Добавление" Click="AddButton_Click" Name="RoomAddButton"/>
+                                    <Button Content="Удаление" Click="DeleteButton_Click" Name="RoomDeleteButton"/>
+
+                                    <Button Content="Сформировать отчёт" Click="CreateDocsButton_Click"/>
+                                </StackPanel>
+                        </StackPanel>
+                </TabItem>
+
+                <TabItem>
+                        <TabItem.Header>
+                                <TextBlock Text="Арендатор"/>
+                        </TabItem.Header>
+                        <StackPanel>
+                                <DataGrid Name="renterDataGrid" Margin="20" 
+                                        AutoGenerateColumns="True" IsReadOnly="True" 
+                                        GridLinesVisibility="All"
+                                        BorderThickness="1" BorderBrush="Gray"
+                                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                </DataGrid>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Button Content="Редактирование" Click="EditButton_Click" Name="RenterEditButton"/>
+                                    <Button Content="Добавление" Click="AddButton_Click" Name="RenterAddButton"/>
+                                    <Button Content="Удаление" Click="DeleteButton_Click" Name="RenterDeleteButton"/>
+
+                                    <Button Content="Сформировать отчёт" Click="CreateDocsButton_Click"/>
+                                </StackPanel>
+                        </StackPanel>
+                </TabItem>
+
+                <TabItem>
+                        <TabItem.Header>
+                                <TextBlock Text="Аренда"/>
+                        </TabItem.Header>
+                        <StackPanel>
+                                <DataGrid Name="rentDataGrid" Margin="20" 
+                                        AutoGenerateColumns="True" IsReadOnly="True" 
+                                        GridLinesVisibility="All"
+                                        BorderThickness="1" BorderBrush="Gray"
+                                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                </DataGrid>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Button Content="Редактирование" Click="EditButton_Click" Name="RentEditButton"/>
+                                    <Button Content="Добавление" Click="AddButton_Click" Name="RentAddButton"/>
+                                    <Button Content="Удаление" Click="DeleteButton_Click" Name="RentDeleteButton"/>
+
+                                    <Button Content="Сформировать отчёт" Click="CreateDocsButton_Click"/>
+                                </StackPanel>
+                        </StackPanel>
+                </TabItem>
+    </TabControl>
+</Window>

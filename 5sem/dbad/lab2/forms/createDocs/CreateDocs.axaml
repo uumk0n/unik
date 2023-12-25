@@ -1,0 +1,30 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="lab2.CreateDocs"
+        Title="Формирование отчётов" Width="500" Height="200"
+        MinWidth="500" MinHeight="200"
+        Background="Orange">
+
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+        <!-- Left Column with Checkboxes -->
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
+            <CheckBox Name="checkBox1" Content="Table 1" Margin="0,0,0,10"/>
+            <CheckBox Name="checkBox2" Content="Table 2" Margin="0,0,0,10"/>
+            <CheckBox Name="checkBox3" Content="Table 3" Margin="0,0,0,10"/>
+            <CheckBox Name="checkBox4" Content="Table 4" Margin="0,0,0,10"/>
+        </StackPanel>
+
+        <!-- Right Column with DatePicker -->
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
+            <Button Content="Сформировать отчёт" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10" Click="Button_Click"/>
+            <TextBlock Text="С :" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <DatePicker x:Name="datePickerStart" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Margin="0,0,0,10"/>
+            <TextBlock Text="По :" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <DatePicker x:Name="datePickerEnd" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Margin="0,0,0,10"/>
+        </StackPanel>
+    </StackPanel>
+
+</Window>

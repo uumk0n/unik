@@ -1,0 +1,106 @@
+{
+  "DataSet": {
+    "Building": [
+      {
+        "BuildingID": 2,
+        "Name": "Building 3",
+        "Address": "Address 2"
+      },
+      {
+        "BuildingID": 1,
+        "Name": "Building 2",
+        "Address": "Address 1"
+      },
+      {
+        "BuildingID": 3,
+        "Name": "dasdas",
+        "Address": "asdasd"
+      },
+      {
+        "BuildingID": 4,
+        "Name": "new Building2",
+        "Address": "москва"
+      },
+      {
+        "BuildingID": 5,
+        "Name": " asdas",
+        "Address": " asdasd"
+      }
+    ],
+    "Room": [
+      {
+        "RoomID": 1,
+        "Name": "Room 1",
+        "Area": 100,
+        "BuildingID": 0,
+        "BuildingName": "Building 2"
+      },
+      {
+        "RoomID": 2,
+        "Name": "Room 2",
+        "Area": 150,
+        "BuildingID": 0,
+        "BuildingName": "Building 2"
+      }
+    ],
+    "Renter": [
+      {
+        "RenterID": 1,
+        "CompanyName": "Company 1",
+        "LegalAddress": "Legal Address 1",
+        "CEOFullName": "CEO Name 1",
+        "ContactPhone": "123-456-7890"
+      }
+    ],
+    "Rent": [
+      {
+        "RentID": 1,
+        "RoomID": 0,
+        "RoomName": "Room 1",
+        "RenterID": 0,
+        "RenterName": "Company 1",
+        "ContractNumber": "Contract 1",
+        "ContractDate": "2023-09-30T00:00:00",
+        "StartDate": "2023-10-01T00:00:00",
+        "EndDate": "2024-09-30T00:00:00"
+      }
+    ]
+  },
+  "TableInfo": [
+    {
+      "TableName": "Building",
+      "PrimaryKeys": [
+        "BuildingID"
+      ],
+      "Relations": []
+    },
+    {
+      "TableName": "Room",
+      "PrimaryKeys": [
+        "RoomID"
+      ],
+      "Relations": [
+        {
+          "ParentTable": "Building",
+          "ChildTable": "Room",
+          "ParentColumn": "BuildingID",
+          "ChildColumn": "BuildingID"
+        }
+      ]
+    },
+    {
+      "TableName": "Renter",
+      "PrimaryKeys": [
+        "RenterID"
+      ],
+      "Relations": []
+    },
+    {
+      "TableName": "Rent",
+      "PrimaryKeys": [
+        "RentID"
+      ],
+      "Relations": []
+    }
+  ]
+}

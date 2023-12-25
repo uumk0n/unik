@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "docxtemplater": "^3.42.6",
+    "xlsx": "^0.18.5"
+  }
+}

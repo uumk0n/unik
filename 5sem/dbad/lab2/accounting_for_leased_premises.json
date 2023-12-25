@@ -1,0 +1,88 @@
+{
+  "DataSet": {
+    "Building": [
+      {
+        "BuildingID": 2,
+        "Name": "Building 3",
+        "Address": "Address 2"
+      },
+      {
+        "BuildingID": 1,
+        "Name": "Building 1",
+        "Address": "Address 1"
+      },
+      {
+        "BuildingID": 3,
+        "Name": "New Building",
+        "Address": "tyumen"
+      },
+      {
+        "BuildingID": 4,
+        "Name": "new Building2",
+        "Address": "москва"
+      }
+    ],
+    "Room": [
+      {
+        "RoomID": 1,
+        "Name": "Room 1",
+        "Area": 100,
+        "BuildingID": 1
+      },
+      {
+        "RoomID": 2,
+        "Name": "Room 2",
+        "Area": 150,
+        "BuildingID": 1
+      }
+    ],
+    "Renter": [
+      {
+        "RenterID": 1,
+        "CompanyName": "Company 1",
+        "LegalAddress": "Legal Address 1",
+        "CEOFullName": "CEO Name 1",
+        "ContactPhone": "123-456-7890"
+      }
+    ],
+    "Rent": [
+      {
+        "RentID": 1,
+        "RoomID": 1,
+        "RenterID": 1,
+        "ContractNumber": "Contract 1",
+        "ContractDate": "2023-09-30",
+        "StartDate": "2023-10-01",
+        "EndDate": "2024-09-30"
+      }
+    ]
+  },
+  "TableInfo": [
+    {
+      "TableName": "Building",
+      "PrimaryKeys": [
+        "BuildingID"
+      ],
+      "Relations": []
+    },
+    {
+      "TableName": "Room",
+      "PrimaryKeys": [
+        "RoomID"
+      ],
+      "Relations": []
+    },
+    {
+      "TableName": "Renter",
+      "PrimaryKeys": [
+        "RenterID"
+      ],
+      "Relations": []
+    },
+    {
+      "TableName": "Rent",
+      "PrimaryKeys": [],
+      "Relations": []
+    }
+  ]
+}

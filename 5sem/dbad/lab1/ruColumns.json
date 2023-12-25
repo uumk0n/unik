@@ -1,0 +1,17 @@
+{
+  "name": "название",
+  "address": "адрес",
+  "area": "площадь",
+  "contractnumber": "номер контракта",
+  "contractdate": "дата контракта",
+  "startdate": "дата начала",
+  "enddate": "дата окончания",
+  "companyname": "название компании",
+  "legaladdress": "юридический адрес",
+  "ceofullname": "ФИО генерального директора",
+  "contactphone": "контактный телефон",
+  "roomname": "название помещения",
+  "buildingname": "название здания",
+  "rentername": "название арендатора",
+  "buildingaddress": "адрес здания"
+}
