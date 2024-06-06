@@ -2,7 +2,7 @@ bin
 obj
 .vs
 .idea
-
+.DS_Store
 *.manifest
 .vscode/
 
